@@ -19,6 +19,9 @@ RUN apk add --no-cache --virtual .build-deps  \
     libzip-dev \
     gmp-dev \
     gettext-dev \
+    pkgconf \
+    openssl-dev \
+    brotli-dev \
     linux-headers
 
 # Add Production Dependencies
@@ -65,7 +68,8 @@ RUN docker-php-ext-configure \
     bcmath
 
 RUN pecl install swoole && docker-php-ext-enable swoole && \
-    pecl install redis && docker-php-ext-enable redis
+    pecl install redis && docker-php-ext-enable redis && \
+    php -m | grep -Eiq '^(swoole|redis)$'
 
 ARG IMAGICK_LAST_COMMIT='28f27044e435a2b203e32675e942eb8de620ee58'
 
