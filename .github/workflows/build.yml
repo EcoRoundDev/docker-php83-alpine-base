@@ -34,5 +34,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            elemenx/php83-alpine-base:latest
+            writing/php83-alpine-base:latest
 
